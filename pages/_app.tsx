@@ -1,14 +1,8 @@
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache
-} from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import { AppProps } from "next/app";
+import useApolloClient  from "@utils/apollo-client";
 
-const client = new ApolloClient({
-  uri: "",
-  cache: new InMemoryCache()
-});
+const client = useApolloClient();
 
 const TodoApp: React.FunctionComponent<AppProps> = (props) => {
   const { Component, pageProps } = props;

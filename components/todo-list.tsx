@@ -1,11 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
 
 const GET_TODOS = gql`{
-  query getTodos {
-    todos {
-      id
-      summary
-    }
+  todos {
+    id
+    summary
   }
 }`;
 
@@ -17,7 +15,7 @@ type TodoModel = {
 };
 
 const TodoList: React.FunctionComponent<ListProps> = (props) => {
-  const { loading, error, data } = useQuery(GET_TODOS);
+  const { data, error, loading } = useQuery(GET_TODOS);
 
   if (loading) { return <p>loading...</p> }
   if (error) { return <p>{error.message}</p> }

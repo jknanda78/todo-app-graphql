@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer, gql } from "apollo-server-micro";
 console.log("api/index.js");
 /*
   A schema is a collection of type definitions (hence "typeDefs")
@@ -24,6 +24,7 @@ const todos = [
   { id: "1", summary: "todo summary 1" },
   { id: "2", summary: "todo summary 2" },
   { id: "3", summary: "todo summary 3" },
+  { id: "4", summary: "todo summary 4" },
 ];
 
 // Resolvers
@@ -36,15 +37,12 @@ const resolvers = {
 // Create an instance of ApolloServer
 const server = new ApolloServer({ typeDefs, resolvers });
 
-// The `listen` method launches a web server.
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
 
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// }
+const handler = server.createHandler({ path: '/api/graphql' });
 
-// export default apolloServer.createHandler({ path: '/api/graphql' })
+export default handler;

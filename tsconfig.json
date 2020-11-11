@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": [
       "dom",
@@ -16,48 +17,52 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
-  },
-  "paths": {
-    "@apis": [
-      "./pages/apis/*"
-    ],
-    "@components/*": [
-      "./components/*"
-    ],
-    "@containers/*": [
-      "./pages/containers/*"
-    ],
-    "@middlewares/*": [
-      "./redux/middlewares/*"
-    ],
-    "@store": [
-      "./redux/store/index.tsx"
-    ],
-    "@store/utils/*": [
-      "./redux/utils/*"
-    ],
-    "@actions/*": [
-      "./redux/actions/*"
-    ],
-    "@pages/*": [
-      "./pages/*"
-    ],
-    "@models/*": [
-      "./redux/models/*"
-    ],
-    "@reducers/*": [
-      "./redux/reducers/*"
-    ],
-    "@styles/*": [
-      "./styles/*"
-    ],
-    "@types": [
-      "./redux/action-types/index.tsx"
-    ]
+    "jsx": "preserve",
+    "paths": {
+      "@apis": [
+        "pages/apis/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@containers/*": [
+        "pages/containers/*"
+      ],
+      "@middlewares/*": [
+        "redux/middlewares/*"
+      ],
+      "@store": [
+        "redux/store/index.tsx"
+      ],
+      "@store/utils/*": [
+        "redux/utils/*"
+      ],
+      "@actions/*": [
+        "redux/actions/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@models/*": [
+        "redux/models/*"
+      ],
+      "@reducers/*": [
+        "redux/reducers/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@types": [
+        "redux/action-types/index.tsx"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
+    "**/*.js",
     "**/*.ts",
     "**/*.tsx"
   ],
