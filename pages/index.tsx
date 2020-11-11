@@ -1,4 +1,5 @@
 import React from "react";
+import TodoList from "../components/todo-list";
 
 type TodoProps = {};
 
@@ -22,9 +23,7 @@ export default class TodoComponent extends React.Component<TodoProps> {
             </form>
           </section>
           <section>
-            <ul>
-              <li>Sample Todo <button type="submit" value="Remove">X</button></li>
-            </ul>
+            <TodoList />
           </section>
         </main>
       </div>
