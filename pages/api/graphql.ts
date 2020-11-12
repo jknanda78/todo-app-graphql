@@ -8,7 +8,7 @@ console.log("api/index.js");
 const typeDefs = gql`
   # This "Todo" type defines the queryable fields for every todo in our data source.
   type Todo {
-    id: String
+    id: ID
     summary: String
   }
 
@@ -16,6 +16,11 @@ const typeDefs = gql`
   # clients can execute, along with the return type for each.
   type Query {
     todos: [Todo]
+    todo(id: ID!): Todo
+  }
+
+  type Mutation {
+    addTodo(id: ID!, summary: String): Todo
   }
 `;
 
@@ -30,7 +35,14 @@ const todos = [
 // Resolvers
 const resolvers = {
   Query: {
-    todos: () => todos
+    todos: () => todos,
+    todo: (parent, args, context, info) => todos.find(todo => todo.id === args.id)
+  },
+  Mutation: {
+    addTodo: async (_, { id, summary }, { }) => {
+      todos.push({ id, summary });
+      return todos.find(todo => todo.id === id);
+    }
   }
 };
 
