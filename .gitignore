@@ -35,7 +35,3 @@ yarn-error.log*
 
 # vscode
 .vscode
-
-# mongodb
-api-server/data
-api-server/data/db
