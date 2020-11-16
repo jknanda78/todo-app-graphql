@@ -2,6 +2,10 @@
 
 Building a React based Todo application integrating Next.js.
 
+## Node JS API
+
+Mongodb for local testing. Please `cd` into `api-server` folder for further instructions.
+
 # Integrating with Next.js
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

@@ -20,43 +20,46 @@
     "jsx": "preserve",
     "paths": {
       "@apis": [
-        "pages/apis/*"
+        "src/pages/apis/*"
       ],
       "@components/*": [
-        "components/*"
+        "src/components/*"
       ],
       "@containers/*": [
-        "pages/containers/*"
+        "src/pages/containers/*"
+      ],
+      "@datasources/*": [
+        "src/datasources/*"
       ],
       "@middlewares/*": [
-        "redux/middlewares/*"
+        "src/redux/middlewares/*"
       ],
       "@store": [
-        "redux/store/index.tsx"
+        "src/redux/store/index.tsx"
       ],
       "@store/utils/*": [
-        "redux/utils/*"
+        "src/redux/utils/*"
       ],
       "@actions/*": [
-        "redux/actions/*"
+        "src/redux/actions/*"
       ],
       "@pages/*": [
-        "pages/*"
+        "src/pages/*"
       ],
       "@models/*": [
-        "redux/models/*"
+        "src/redux/models/*"
       ],
       "@reducers/*": [
-        "redux/reducers/*"
+        "src/redux/reducers/*"
       ],
       "@styles/*": [
-        "styles/*"
+        "src/styles/*"
       ],
       "@types": [
-        "redux/action-types/index.tsx"
+        "src/redux/action-types/index.tsx"
       ],
       "@utils/*": [
-        "utils/*"
+        "src/utils/*"
       ]
     }
   },

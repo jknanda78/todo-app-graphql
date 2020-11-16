@@ -35,3 +35,7 @@ yarn-error.log*
 
 # vscode
 .vscode
+
+# mongodb
+data
+data/db
