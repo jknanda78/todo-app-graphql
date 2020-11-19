@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 
 const GET_ALL_TODOS = gql`{
-  getAllTodos {
+  todos {
     _id
     summary
   }
@@ -20,11 +20,11 @@ const TodoList: React.FunctionComponent<ListProps> = (props) => {
   if (loading) { return <p>loading...</p> }
   if (error) { return <p>{error.message}</p> }
 
-  if (data.getAllTodos?.length) {
+  if (data.todos?.length) {
     return (
       <ul>
         {
-          data.getAllTodos.map((todo: TodoModel) => <li key={todo._id}>{todo.summary}</li>)
+          data.todos.map((todo: TodoModel) => <li key={todo._id}>{todo.summary}</li>)
         }
       </ul>
     )

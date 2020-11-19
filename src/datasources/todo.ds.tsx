@@ -6,14 +6,13 @@ export default class TodoAPI extends RESTDataSource {
     this.baseURL = "http://local.dev.com:4000/v1/";
   }
 
-  getAllTodos = async () => {
+  todos = async () => {
     const todos = await this.get("todos");
     return Array.isArray(todos) && todos.length ? todos : [];
   }
 
   addTodo = async ({ summary }) => {
-    console.log("todo.ds:::", summary);
-    const todos = await this.post("todos", { summary });
-    return Array.isArray(todos) && todos.length ? todos : [];
+    const response = await this.post("addTodo", { summary });
+    return response;
   }
 };

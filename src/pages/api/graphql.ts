@@ -13,19 +13,19 @@ const typeDefs = gql`
     summary: String
   }
 
-  type Response {
+  type Message {
     message: String
   }
 
   # The "Query" type is special: it lists all of the available queries that
   # clients can execute, along with the return type for each.
   type Query {
-    getAllTodos: [Todo]
+    todos: [Todo]
     getTodoById(id: ID!): Todo
   }
 
   type Mutation {
-    addTodo(summary: String): Response
+    addTodo(summary: String): Message
     removeTodo(id: ID!): [Todo]
   }
 `;
@@ -33,8 +33,8 @@ const typeDefs = gql`
 // Resolvers
 const resolvers = {
   Query: {
-    getAllTodos: async (_, __, { dataSources }) => {
-      const todos = await dataSources.TodoAPI.getAllTodos();
+    todos: async (_, __, { dataSources }) => {
+      const todos = await dataSources.TodoAPI.todos();
       return todos;
     },
     getTodoById: (parent, args, context, info) => {
@@ -43,7 +43,6 @@ const resolvers = {
   },
   Mutation: {
     addTodo: async (_, { summary }, { dataSources }) => {
-      console.log("mutation::::", summary);
       const response = await dataSources.TodoAPI.addTodo({ summary });
       return response;
     },

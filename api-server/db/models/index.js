@@ -10,10 +10,11 @@ exports.getAllTodos = () =>
   });
 
 // Add todo to todos collection
-exports.addTodo = (summary) =>
+exports.addTodo = (request) =>
   connectDB().then((client) => {
     const db = client.db("tododb");
     const todos = db.collection("todos");
+    const summary = request.body.summary;
 
     return todos.insert({
       summary

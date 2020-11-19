@@ -4,6 +4,6 @@ const { deleteTodo } = require("./delete/todo");
 
 exports.routes = (app) => {
   app.get("/v1/todos", todos);
-  app.post("/v1/todos/todoId", addTodo);
+  app.post("/v1/addTodo", addTodo);
   app.delete("/v1/todos/todoId", deleteTodo);
 };

@@ -1,4 +1,5 @@
 const { getAllTodos } = require("../db/models");
+
 exports.todos = (request, response) => {
   return getAllTodos()
     .then((todos) => {
