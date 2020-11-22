@@ -1,14 +1,28 @@
 # Node JS API's
 
-## Installations
+## MongoDB
 
-`yarn install`
-
-### MongoDB
+### Pre-requisites
 
 `brew tap mongodb/brew`
 `brew install mongodb-community`
 
+## Installations
+
+`yarn install`
+
 ### Folders
 
-created `/data/db` folder in the root
+create `/data/db` folder in the root of `api-server` folder
+
+## Start server
+
+`npm start`
+
+## Create new db in mongodb
+
+`tododb`
+
+## Create new collection under `tododb`
+
+`todos`

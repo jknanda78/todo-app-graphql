@@ -9,7 +9,7 @@ import TodoAPI from "@datasources/todo.ds";
 const typeDefs = gql`
   # This "Todo" type defines the queryable fields for every todo in our data source.
   type Todo {
-    _id: ID
+    _id: String
     summary: String
   }
 
@@ -21,12 +21,11 @@ const typeDefs = gql`
   # clients can execute, along with the return type for each.
   type Query {
     todos: [Todo]
-    getTodoById(id: ID!): Todo
   }
 
   type Mutation {
-    addTodo(summary: String): Message
-    removeTodo(id: ID!): [Todo]
+    addTodo(summary: String!): Message
+    deleteTodo(_id: ID!): Message
   }
 `;
 
@@ -36,9 +35,6 @@ const resolvers = {
     todos: async (_, __, { dataSources }) => {
       const todos = await dataSources.TodoAPI.todos();
       return todos;
-    },
-    getTodoById: (parent, args, context, info) => {
-      // todos.find(todo => todo.id === args.id)
     }
   },
   Mutation: {
@@ -46,7 +42,9 @@ const resolvers = {
       const response = await dataSources.TodoAPI.addTodo({ summary });
       return response;
     },
-    removeTodo: async (_, { id }, { datasources }) => {
+    deleteTodo: async (_, { _id }, { dataSources }) => {
+      const response = await dataSources.TodoAPI.deleteTodo({ _id });
+      return response;
     }
   }
 };

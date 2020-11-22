@@ -15,4 +15,9 @@ export default class TodoAPI extends RESTDataSource {
     const response = await this.post("addTodo", { summary });
     return response;
   }
+
+  deleteTodo = async ({ _id }) => {
+    const response = await this.delete("deleteTodo", { id: _id });
+    return response;
+  }
 };

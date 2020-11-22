@@ -12,7 +12,19 @@ const createApolloClient = () => {
     link: new HttpLink({
       uri: "/api/graphql"
     }),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            todos: {
+              merge(existing = [], incoming: any[]) {
+                return incoming;
+              }
+            }
+          }
+        }
+      }
+    })
   });
 };
 

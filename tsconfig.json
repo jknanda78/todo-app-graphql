@@ -31,6 +31,9 @@
       "@datasources/*": [
         "src/datasources/*"
       ],
+      "@gql": [
+        "src/gql/index.ts"
+      ],
       "@middlewares/*": [
         "src/redux/middlewares/*"
       ],

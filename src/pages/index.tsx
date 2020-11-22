@@ -1,49 +1,57 @@
 import React from "react";
+import { useMutation, useQuery } from "@apollo/client";
+import { GET_ALL_TODOS, ADD_TODO, DELETE_TODO } from "@gql";
 import { InputField, InputRef } from "@components/input-field";
 import TodoList from "@components/todo-list";
-import { gql, useMutation } from "@apollo/client";
+import Layout from "@components/layout";
 
-const ADD_TODO = gql`
-  mutation AddTodo($summary: String!) {
-    addTodo(summary: $summary) {
-      message
-    }
-  }`;
-
-type TodoProps = {};
-
+// ref type - uncontrolled input component
 const todoInput = React.createRef<InputRef>();
 
-const TodoComponent: React.FunctionComponent<TodoProps> = (props) => {
-  const [addTodo, { loading }] = useMutation(ADD_TODO, {
-    onError: (err) => {
-      console.log("addTodo:::onError:::err:::", err);
-    }
+const TodoComponent: React.FunctionComponent = () => {
+  // Get All Todos
+  const { data, error, loading, refetch } = useQuery(GET_ALL_TODOS);
+  // Add Todo Mutation
+  const [addTodo, { loading: adding }] = useMutation(ADD_TODO, {
+    onCompleted: () => refetch()
   });
+  // Delete Todo Mutation
+  const [deleteTodo, { loading: deleting }] = useMutation(DELETE_TODO, {
+    onCompleted: () => refetch()
+  });
+  // Handler - add todo
   const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     addTodo({ variables: { summary: todoInput.current?.value } });
     todoInput.current.value = "";
   };
+  // Handler - delete todo
+  const handleOnDelete = (e: React.SyntheticEvent, _id: string) => {
+    deleteTodo({ variables: { _id } });
+  }
 
   return (
-    <div>
-      <main>
-        <header>
-          <h1>Todo App</h1>
-        </header>
+    <Layout
+     title="Todo App"
+    >
+      <>
         <section>
-          <form>
+          <form onSubmit={handleOnSubmit}>
             <p>
               <label htmlFor="todo"></label>
-              <InputField type="text" name="todo" ref={todoInput} defaultValue="" required />
+              <InputField
+                type="text"
+                name="todo"
+                ref={todoInput}
+                defaultValue=""
+                required
+              />
             </p>
             <p>
               <button
-                type="button"
+                type="submit"
                 value="Add"
-                onClick={handleOnSubmit}
-                disabled={loading}
+                disabled={loading || adding}
               >
                 Add
               </button>
@@ -51,10 +59,15 @@ const TodoComponent: React.FunctionComponent<TodoProps> = (props) => {
           </form>
         </section>
         <section>
-          <TodoList />
+          <TodoList
+            data={data}
+            error={error}
+            loading={loading || deleting}
+            onDelete={handleOnDelete}
+          />
         </section>
-      </main>
-    </div>
+      </>
+    </Layout>
   );
 }
 
