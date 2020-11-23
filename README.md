@@ -8,7 +8,7 @@ Mongodb for local testing. Please `cd` into `api-server` folder for further inst
 
 ## Create alias for localhost
 
-Add the below entry to `etc/hosts` 
+Add an entry to `etc/hosts` 
 `127.0.0.1       local.dev.com`
 
 # Integrating with Next.js
