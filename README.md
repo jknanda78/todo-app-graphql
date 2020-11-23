@@ -6,6 +6,11 @@ Building a React based Todo application integrating Next.js.
 
 Mongodb for local testing. Please `cd` into `api-server` folder for further instructions.
 
+## Create alias for localhost
+
+Add the below entry to `etc/hosts` 
+`127.0.0.1       local.dev.com`
+
 # Integrating with Next.js
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
